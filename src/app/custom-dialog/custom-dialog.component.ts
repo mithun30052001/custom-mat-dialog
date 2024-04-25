@@ -1,6 +1,6 @@
-// custom-dialog.component.ts
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Action } from '../action.interface';
 
 @Component({
   selector: 'app-custom-dialog',
@@ -13,7 +13,10 @@ export class CustomDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
-  onNoClick(): void {
-    this.dialogRef.close();
+  onActionClick(action: Action): void {
+    if (action.actionHandler) {
+      action.actionHandler();
+    }
+    this.dialogRef.close(action.label);
   }
 }

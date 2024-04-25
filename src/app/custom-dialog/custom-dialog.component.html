@@ -1,14 +1,13 @@
-<!-- custom-dialog.component.html -->
 <h2 mat-dialog-title>{{ data.title }}</h2>
 <div mat-dialog-content>
   <mat-icon>{{ data.icon }}</mat-icon>
   <p>{{ data.message }}</p>
 </div>
 <div mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="false" color="{{ data.buttonTypes[0] }}">
-    {{ data.buttonLabels[0] }}
-  </button>
-  <button mat-button (click)="onNoClick()" color="{{ data.buttonTypes[1] }}">
-    {{ data.buttonLabels[1] }}
+  <button *ngFor="let action of data.actions"
+          mat-button
+          (click)="onActionClick(action)"
+          [color]="action.type">
+    {{ action.label }}
   </button>
 </div>
