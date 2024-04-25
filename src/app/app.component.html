@@ -1,6 +1,11 @@
-<button mat-raised-button (click)="openMessageDialog('Areyou ok?')">Open Dialog</button>
-
-<button mat-raised-button (click)="openSaveDialog()">Save Dialog</button>
-
-<button mat-raised-button (click)="openNavigateDialog()" mat-raised-button color="primary" tabindex="-1">Navigate Dialog</button>
-
+<div class="basic-container">
+  <p>
+    <button mat-button (click)="openDialog()">Open Confirm Dialog</button>
+  </p>
+  <p>
+    <button mat-button (click)="openAlertDialog()">Open Alert Dialog</button>
+  </p>
+  <p>
+    <button mat-button (click)="openGenericDialog()">Open Generic Dialog</button>
+  </p>
+</div>

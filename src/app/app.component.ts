@@ -1,74 +1,65 @@
-import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { CustomDialogComponent } from './custom-dialog/custom-dialog.component';
-import { Router } from '@angular/router';
+import { Component, Inject } from '@angular/core';
+import { VERSION } from '@angular/material/core';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  templateUrl: 'app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(public dialog: MatDialog, private router: Router) {}
+  version = VERSION;
 
-  openMessageDialog(message: string): void {
-    const dialogRef = this.dialog.open(CustomDialogComponent, {
-      width: '650px',
+  constructor(private dialog: MatDialog) {}
+
+  public constructDialog<T>(TCtor: new (data: any, dialogRef: MatDialogRef<T, any>) => T, data: any): MatDialogRef<T, any> {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    const dialogRef = this.dialog.open(TCtor, { ...dialogConfig, data });
+    return dialogRef;
+ }
+
+
+ openGenericDialog() {
+   const dialogRef = this.constructDialog(ConfirmationDialogComponent, {
+     message: 'Are you sure want to delete?',
+     buttonText: {
+       ok: 'Save',
+       cancel: 'No'
+     }
+   });
+ }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: {
-        title: 'Message',
-        message: message,
-        actions: [{ label: 'Close', type: 'basic' }]
+        message: 'Are you sure want to delete?',
+        buttonText: {
+          ok: 'Save',
+          cancel: 'No'
+        }
       }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialog closed with action:', result);
-    });
-  }
-
-  openNavigateDialog(): void {
-    const dialogRef = this.dialog.open(CustomDialogComponent, {
-      width: '650px',
-      data: {
-        title: 'Navigate Dialog',
-        message: 'Do you want to navigate?',
-        actions: [
-          { label: 'Navigate', type: 'primary', actionHandler: this.handleNavigate.bind(this) },
-          { label: 'Close', type: 'basic' }
-        ]
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        console.log('User confirmed deletion');
+      } else {
+        console.log('User canceled deletion');
       }
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialog closed with action:', result);
-    });
   }
 
-  openSaveDialog(): void {
-    const dialogRef = this.dialog.open(CustomDialogComponent, {
-      width: '650px',
+  openAlertDialog() {
+    const dialogRef = this.dialog.open(AlertDialogComponent, {
       data: {
-        title: 'Save Dialog',
-        message: 'Do you want to save?',
-        actions: [
-          { label: 'Save', type: 'primary', actionHandler: this.handleSave.bind(this) },
-          { label: 'Close', type: 'basic' }
-        ]
-      }
+        message: 'HelloWorld',
+        buttonText: {
+          cancel: 'Done'
+        }
+      },
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialog closed with action:', result);
-    });
-  }
-
-  handleSave(): void {
-    console.log('Save action performed');
-    // Add save logic here
-  }
-
-  handleNavigate(): void {
-    console.log('Navigate action performed');
-    this.router.navigate(['/target-route']);
   }
 }
