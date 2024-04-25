@@ -1,3 +1,4 @@
+// app.component.ts
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CustomDialogComponent } from './custom-dialog/custom-dialog.component';
@@ -8,26 +9,22 @@ import { CustomDialogComponent } from './custom-dialog/custom-dialog.component';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  constructor(public dialog: MatDialog) {}
 
-  constructor(private dialog: MatDialog) {}
-
-  openCustomDialog(): void {
+  openDialog(): void {
     const dialogRef = this.dialog.open(CustomDialogComponent, {
-      width: '250px',
+      width: '650px',
       data: {
-        title: 'Dialog Title',
-        message: 'Dialog Message',
-        actions: [
-          { label: 'Close', type: 'close', color: 'primary' },
-          { label: 'Navigate', type: 'navigate', color: 'blue', icon: 'arrow_forward' },
-          { label: 'Confirm', type: 'confirmation', color: 'blue', icon: 'refresh' },
-          { label: 'Custom Action', type: 'custom', color: 'warn', icon: 'extension' }
-        ]
+        title: 'Confirmation',
+        message: 'Do you want to try again?',
+        buttonLabels: ['Try Again', 'Close'],
+        buttonTypes: ['primary', 'basic'],
+        icon: 'warning'
       }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialog result:', result);
+      console.log('The dialog was closed');
     });
   }
 }
