@@ -25,7 +25,8 @@ export class AlertDialogComponent {
       }
       this.buttonType = data.buttonType || this.buttonType;
       const iconName = data.icon.toString();
-      this.icon = ICONS.warning || this.icon;
+      console.log("Icon Name",iconName);
+      this.icon = ICONS[iconName] || this.icon;
     }
 
   }

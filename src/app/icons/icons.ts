@@ -1,4 +1,4 @@
-export const ICONS = {
+export const ICONS:any = {
     warning: 
         `<svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" 
          text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" 
