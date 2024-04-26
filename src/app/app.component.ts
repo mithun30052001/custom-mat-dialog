@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
-import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { DomSanitizer } from '@angular/platform-browser';
-import { NavigationDialogComponent } from './navigation-dialog/navigation-dialog.component';
+import { MatDialogComponent } from './mat-dialog/mat-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -21,17 +19,21 @@ export class AppComponent {
     return dialogRef;
   }
 
-  openNavigateDialog(route: string) {
-    const dialogRef = this.dialog.open(NavigationDialogComponent, {
+  openNavigateDialog() {
+    const dialogRef = this.dialog.open(MatDialogComponent, {
       data: {
         message: 'Do you want to navigate?',
-        buttonText: {
-          navigate: 'Navigate',
-          close: 'Close'
+        navigateTo: 'dummy',
+        leftButton:{
+          type:'close',
+          text:'Close',
+          style:'basic'
         },
-        route: route,
-        navigateButtonType: 'primary',
-        closeButtonType: 'basic',
+        rightButton:{
+          type:'navigate',
+          text:'Navigate',
+          style:'primary'
+        }
       }
     });
     dialogRef.afterClosed().subscribe(() => {
@@ -39,39 +41,22 @@ export class AppComponent {
     });
   }
 
-  openGenericDialog() {
-    const dialogRef = this.constructDialog(ConfirmationDialogComponent, {
-      message: 'Are you sure want to do this?',
-      buttonText: {
-        ok: 'Yes',
-        cancel: 'No'
-      },
-      okButtonType: 'primary',
-      cancelButtonType: 'basic',
-      icon: 'success',
-    });
-
-    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
-        if (confirmed) {
-          console.log('User clicked Yes');
-        } else {
-          console.log('User clicked No');
-        }
-     
-      });
-  }
-
   openDialog() {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+    const dialogRef = this.dialog.open(MatDialogComponent, {
       data: {
         message: 'Profile details updated successfully',
-        buttonText: {
-          ok: 'Save',
-          cancel: 'No'
+        type: 'success',
+        leftButton:{
+          type:'close',
+          text:'No',
+          style:'basic'
         },
-        okButtonType: 'primary',
-        cancelButtonType: 'basic',
-        icon: 'success',
+        rightButton:{
+          type:'confirm',
+          text:'Save',
+          style:'primary'
+        },
+        
       }
     });
 
@@ -85,14 +70,15 @@ export class AppComponent {
   }
 
   openAlertDialog() {
-    const dialogRef = this.dialog.open(AlertDialogComponent, {
+    const dialogRef = this.dialog.open(MatDialogComponent, {
       data: {
         message: 'HelloWorld',
-        buttonText: {
-          cancel: 'Close'
+        type: 'warning',
+        leftButton:{
+          type:'close',
+          text:'Close',
+          style:'primary'
         },
-        buttonType: 'primary',
-        icon: 'warning'
       },
     });
 
