@@ -8,12 +8,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./navigation-dialog.component.scss']
 })
 export class NavigationDialogComponent {
+  navigateButtonType = "basic";
+  closeButtonType = "basic";
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<any>,
     private router: Router
-  ) {}
+  ) {
+    if(data){
+      this.navigateButtonType = data.navigateButtonType || this.navigateButtonType;
+      this.closeButtonType = data.closeButtonType || this.closeButtonType;
+    }
+  }
 
   onAction(action: string): void {
     if (action === 'navigate') {
