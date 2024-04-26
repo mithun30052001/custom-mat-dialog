@@ -29,7 +29,9 @@ export class AppComponent {
           navigate: 'Navigate',
           close: 'Close'
         },
-        route: route
+        route: route,
+        navigateButtonType: 'primary',
+        closeButtonType: 'basic',
       }
     });
   }
