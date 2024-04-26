@@ -34,6 +34,9 @@ export class AppComponent {
         closeButtonType: 'basic',
       }
     });
+    dialogRef.afterClosed().subscribe(() => {
+      console.log('Navigate Dialog Closed');
+    });
   }
 
   openGenericDialog() {
@@ -86,7 +89,7 @@ export class AppComponent {
       data: {
         message: 'HelloWorld',
         buttonText: {
-          cancel: 'Done'
+          cancel: 'Close'
         },
         buttonType: 'primary',
         icon: 'warning'

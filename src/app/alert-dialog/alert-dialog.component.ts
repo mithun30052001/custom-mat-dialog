@@ -5,7 +5,9 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-alert-dialog',
-  templateUrl: './alert-dialog.component.html'
+  templateUrl: './alert-dialog.component.html',
+  styleUrls: ['./alert-dialog.component.scss']
+
 })
 export class AlertDialogComponent {
   message: string = "";
