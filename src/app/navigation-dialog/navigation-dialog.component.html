@@ -1,0 +1,9 @@
+<mat-dialog-content>
+	<p>
+		{{ data.message }}
+	</p>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+	<button mat-button color="primary" (click)="onAction('navigate')">{{ data.buttonText.navigate }}</button>
+    <button mat-button (click)="onAction('close')">{{ data.buttonText.close }}</button>
+</mat-dialog-actions>

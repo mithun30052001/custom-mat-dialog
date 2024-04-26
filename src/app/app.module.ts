@@ -11,12 +11,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {ConfirmationDialogComponent} from './confirmation-dialog/confirmation-dialog.component';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { DummyComponent } from './dummy/dummy.component';
+import { NavigationDialogComponent } from './navigation-dialog/navigation-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ConfirmationDialogComponent,
-    AlertDialogComponent
+    AlertDialogComponent,
+    DummyComponent,
+    NavigationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +32,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatInputModule,
     ReactiveFormsModule,
     MatToolbarModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
