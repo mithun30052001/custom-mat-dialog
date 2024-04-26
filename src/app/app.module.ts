@@ -13,6 +13,8 @@ import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { DummyComponent } from './dummy/dummy.component';
 import { NavigationDialogComponent } from './navigation-dialog/navigation-dialog.component';
+import { DialogComponent } from './dialog/dialog.component';
+import { MessageDialogService } from './message-dialog.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { NavigationDialogComponent } from './navigation-dialog/navigation-dialog
     ConfirmationDialogComponent,
     AlertDialogComponent,
     DummyComponent,
-    NavigationDialogComponent
+    NavigationDialogComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,7 @@ import { NavigationDialogComponent } from './navigation-dialog/navigation-dialog
     MatToolbarModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [MessageDialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
