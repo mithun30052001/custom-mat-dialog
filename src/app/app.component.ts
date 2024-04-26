@@ -58,7 +58,9 @@ export class AppComponent {
         message: 'HelloWorld',
         buttonText: {
           cancel: 'Done'
-        }
+        },
+        buttonType: 'primary',
+        icon: 'warning'
       },
     });
   }
