@@ -8,6 +8,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class AlertDialogComponent {
   message: string = "";
   cancelButtonText = "Cancel";
+  buttonType = "basic";
+  icon = "";
 
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: any,
@@ -18,6 +20,8 @@ export class AlertDialogComponent {
       if (data.buttonText) {
         this.cancelButtonText = data.buttonText.cancel || this.cancelButtonText;
       }
+      this.buttonType = data.buttonType || this.buttonType;
+      this.icon = data.icon || this.icon;
     }
 
   }
