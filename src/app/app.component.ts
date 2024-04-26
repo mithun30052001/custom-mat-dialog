@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dial
 import { Router } from '@angular/router';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
+import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationDialogComponent } from './navigation-dialog/navigation-dialog.component';
 
 @Component({
@@ -13,7 +14,7 @@ import { NavigationDialogComponent } from './navigation-dialog/navigation-dialog
 export class AppComponent {
   constructor(private dialog: MatDialog, private router: Router) {}
 
-  public constructDialog<T>(TCtor: new (data: any, dialogRef: MatDialogRef<T, any>) => T, data: any): MatDialogRef<T, any> {
+  public constructDialog<T>(TCtor: new (data: any, dialogRef: MatDialogRef<T, any>,sanitizer: DomSanitizer) => T, data: any): MatDialogRef<T, any> {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     const dialogRef = this.dialog.open(TCtor, { ...dialogConfig, data });
@@ -39,7 +40,10 @@ export class AppComponent {
       buttonText: {
         ok: 'Yes',
         cancel: 'No'
-      }
+      },
+      okButtonType: 'primary',
+      cancelButtonType: 'basic',
+      icon: 'success',
     });
 
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
@@ -48,25 +52,29 @@ export class AppComponent {
         } else {
           console.log('User clicked No');
         }
+     
       });
   }
 
   openDialog() {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: {
-        message: 'Are you sure want to delete?',
+        message: 'Profile details updated successfully',
         buttonText: {
           ok: 'Save',
           cancel: 'No'
-        }
+        },
+        okButtonType: 'primary',
+        cancelButtonType: 'basic',
+        icon: 'success',
       }
     });
 
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
-        console.log('User confirmed deletion');
+        console.log('User confirmed updation');
       } else {
-        console.log('User canceled deletion');
+        console.log('User canceled updation');
       }
     });
   }
