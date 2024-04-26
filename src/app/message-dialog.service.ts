@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from './dialog/dialog.component';
+import { MatDialogComponent } from './mat-dialog/mat-dialog.component'
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class MessageDialogService {
   constructor(private dialog: MatDialog) { }
 
     openMessageDialog(data: any){
-      this.dialogRef = this.dialog.open(DialogComponent, {
+      this.dialogRef = this.dialog.open(MatDialogComponent, {
         disableClose: true,
         data: data
       });

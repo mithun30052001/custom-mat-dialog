@@ -20,9 +20,8 @@ export class MatDialogComponent {
   icon: string = "";
   route: string = ""
 
-  constructor(
-    @Inject(MAT_DIALOG_DATA) private data: any,
-    private dialogRef: MatDialogRef<MatDialogComponent>,
+  constructor(private dialogRef: MatDialogRef<MatDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) data: any,
     private sanitizer: DomSanitizer,
     private router: Router
   ) {
@@ -40,7 +39,7 @@ export class MatDialogComponent {
       }
       const iconName = data.type?.toString();
       this.icon = iconName? (ICONS[iconName] || this.icon) : '';
-      this.route = data.navigateTo;
+      this.route = data.rightButton?.navigateTo;
     }
   }
 
