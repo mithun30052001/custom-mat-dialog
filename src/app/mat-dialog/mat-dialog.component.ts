@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ICONS } from '../icons/icons';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { MessageDialogData } from '../message-data.interface';
 
 @Component({
   selector: 'app-mat-dialog',
@@ -21,25 +22,25 @@ export class MatDialogComponent {
   route: string = ""
 
   constructor(private dialogRef: MatDialogRef<MatDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) data: any,
+    @Inject(MAT_DIALOG_DATA) data: MessageDialogData,
     private sanitizer: DomSanitizer,
     private router: Router
   ) {
     if (data) {
       this.message = data.message || this.message;
       if(data.leftButton){
-        this.leftButtonText = data.leftButton.text || this.leftButtonText;
+        this.leftButtonText = data.leftButton.label || this.leftButtonText;
         this.leftButtonStyle = data.leftButton.style || this.leftButtonStyle;
         this.leftButtonType = data.leftButton.type || this.leftButtonType;
       }
       if(data.rightButton){
-        this.rightButtonText = data.rightButton.text || this.rightButtonText;
+        this.rightButtonText = data.rightButton.label || this.rightButtonText;
         this.rightButtonStyle = data.rightButton.style || this.rightButtonStyle;
         this.rightButtonType = data.rightButton.type || this.rightButtonType;
       }
       const iconName = data.type?.toString();
       this.icon = iconName? (ICONS[iconName] || this.icon) : '';
-      this.route = data.rightButton?.navigateTo;
+      this.route = data.rightButton?.navigateTo || '';
     }
   }
 

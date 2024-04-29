@@ -15,12 +15,12 @@ export class AppComponent {
         type: 'warning',
         rightButton: {
           type: 'confirm',
-          text: 'delete',
+          label: 'delete',
           style: 'primary'
         },
         leftButton: {
           type: 'close',
-          text: 'cancel',
+          label: 'close',
           style: 'basic'
         }
       })
@@ -32,29 +32,28 @@ export class AppComponent {
         type: 'warning',
           rightButton: {
             type: 'navigate',
-            text: 'dummy',
+            label: 'dummy',
             navigateTo: 'dummy',
             style:'primary'
           },
           leftButton: {
             type: 'close',
-            text: 'cancel',
+            label: 'close',
             style:'basic'
           }
         })
     }
 
-    openAlertDialog() {
+    openInfoDialog() {
       this.dialogService.openMessageDialog({
-        data: {
-          message: 'HelloWorld',
-          type: 'warning',
-          leftButton:{
-            type:'close',
-            text:'Close',
-            style:'primary'
-          },
+        message: 'Information Message',
+        type: 'warning',
+        leftButton: {
+          type: 'close',
+          label: 'Close',
+          style: 'primary'
         },
       });
-  }
+    }
+
 }
