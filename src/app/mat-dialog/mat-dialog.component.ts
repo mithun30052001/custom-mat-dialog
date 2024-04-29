@@ -48,6 +48,7 @@ export class MatDialogComponent {
 
   onAction(): void {
     if(this.rightButtonType === 'confirm'){
+      console.log("User is deleted")
       this.dialogRef.close(true);
     }
     else if(this.rightButtonType === 'navigate'){
