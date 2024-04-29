@@ -7,7 +7,7 @@ export interface MessageDialogData {
     style?: 'primary' | 'basic';
     navigateTo?: string;
   };
-  leftButton?: {
+  leftButton: {
     type: 'close' ;
     label: string;
     style?: 'primary' | 'basic';
@@ -18,6 +18,6 @@ type RequireNavigation<T> = T extends { rightButton: { type: 'navigate' } } ? Re
 type OptionalIfClose<T> = T extends { type: 'close' } ? Partial<T> : T;
 
 export type ConditionalMessageDialogData = RequireNavigation<MessageDialogData> & {
-  rightButton: RequireNavigation<MessageDialogData['rightButton']> & OptionalIfClose<MessageDialogData['rightButton']>;
   leftButton?: RequireNavigation<MessageDialogData['leftButton']> & OptionalIfClose<MessageDialogData['leftButton']>;
+  navigateTo?: RequireNavigation<MessageDialogData['rightButton']>
 };
