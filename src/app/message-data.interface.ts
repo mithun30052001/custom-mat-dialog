@@ -13,10 +13,3 @@ export interface MessageDialogData {
     style?: 'primary' | 'basic';
   };
 }
-
-
-type OptionalIfClose<T> = T extends { type: 'close' } ? Partial<T> : T;
-
-export type ConditionalMessageDialogData = {
-  leftButton?: OptionalIfClose<MessageDialogData['leftButton']>;
-};
