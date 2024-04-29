@@ -8,4 +8,49 @@
   .icon-style {
     width: 50px;
   }
+
+  .content-description{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
+    color: rgb(65,83,149);
+  }
+
+  .mat-content-container{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+
+  .mat-actions-container {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 16px;
+
+    .left-button {
+      min-width: 170px;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 64px !important;
+      border: 1px solid black !important;
+      color: rgb(68,79,89);
+      background-color: white;
+      box-shadow: none !important;
+      height: 40px;
+    }
+
+    .right-button{
+      min-width: 170px;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 64px !important;
+      border: 1px solid #2B3874 !important;
+      background-color: rgb(65,83,149);
+      color: white;
+      box-shadow: none !important;
+      height: 40px;
+    }
+  }
 }

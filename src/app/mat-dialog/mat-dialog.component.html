@@ -3,13 +3,13 @@
         <div class="icon-style" *ngIf="icon && icon.length > 0" [innerHTML]="icons">
         </div>
     </div>
-    <mat-dialog-content>
-        <p>
+    <mat-dialog-content class="mat-content-container">
+        <p class="content-description">
             {{ message }}
         </p>
     </mat-dialog-content>
-    <mat-dialog-actions align="center">
-        <button mat-raised-button [color]="leftButtonStyle "  [mat-dialog-close] tabindex="1">{{ leftButtonText }}</button>
-        <button *ngIf="rightButtonText && rightButtonText.length > 0" mat-raised-button [color]="rightButtonStyle " (click)="onAction()" [mat-dialog-close] tabindex="-1">{{ rightButtonText }}</button>
+    <mat-dialog-actions class="mat-actions-container">
+        <button mat-raised-button class="left-button" [mat-dialog-close]>{{ leftButtonText }}</button>
+        <button *ngIf="rightButtonText && rightButtonText.length > 0" class="right-button" mat-raised-button  (click)="onAction()">{{ rightButtonText }}</button>
     </mat-dialog-actions>
 </div>

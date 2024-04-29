@@ -13,6 +13,8 @@ export class MessageDialogService {
 
     openMessageDialog(data: MessageDialogData){
       this.dialogRef = this.dialog.open(MatDialogComponent, {
+        width: '500px',
+        height: '250px',
         disableClose: true,
         data: data
       });
