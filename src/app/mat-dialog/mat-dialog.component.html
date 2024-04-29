@@ -1,13 +1,15 @@
-<div style="text-align: center;">
-    <div class="icon-style" *ngIf="icon && icon.length > 0" [innerHTML]="icons"></div>
-  <mat-dialog-content>
-      <p>
-          {{ message }}
-      </p>
-  </mat-dialog-content>
-  <mat-dialog-actions align="center">
-      <button mat-raised-button [color]="leftButtonStyle "  [mat-dialog-close] tabindex="1">{{ leftButtonText }}</button>
-      <button *ngIf="rightButtonText && rightButtonText.length > 0" mat-raised-button [color]="rightButtonStyle " (click)="onAction()" [mat-dialog-close] tabindex="-1">{{ rightButtonText }}</button>
-  </mat-dialog-actions>
-  </div>
-  
+<div class="mat-dialog-container">
+    <div class="icon-container">
+        <div class="icon-style" *ngIf="icon && icon.length > 0" [innerHTML]="icons">
+        </div>
+    </div>
+    <mat-dialog-content>
+        <p>
+            {{ message }}
+        </p>
+    </mat-dialog-content>
+    <mat-dialog-actions align="center">
+        <button mat-raised-button [color]="leftButtonStyle "  [mat-dialog-close] tabindex="1">{{ leftButtonText }}</button>
+        <button *ngIf="rightButtonText && rightButtonText.length > 0" mat-raised-button [color]="rightButtonStyle " (click)="onAction()" [mat-dialog-close] tabindex="-1">{{ rightButtonText }}</button>
+    </mat-dialog-actions>
+</div>

@@ -11,8 +11,8 @@ export class AppComponent {
 
     openDialog(){
       this.dialogService.openMessageDialog({
-        message: 'do you really want to delete?',
-        type: 'warning',
+        message: 'Customer couldnt be deleted',
+        type: 'error',
         rightButton: {
           type: 'confirm',
           label: 'delete',
@@ -28,7 +28,7 @@ export class AppComponent {
 
     openNavDialog(){
       this.dialogService.openMessageDialog({
-        message: 'do you really want to delete?',
+        message: 'do you really want to redirect?',
         type: 'warning',
           rightButton: {
             type: 'navigate',
@@ -47,7 +47,19 @@ export class AppComponent {
     openInfoDialog() {
       this.dialogService.openMessageDialog({
         message: 'Information Message',
-        type: 'warning',
+        type: 'info',
+        leftButton: {
+          type: 'close',
+          label: 'Close',
+          style: 'primary'
+        },
+      });
+    }
+
+    openSuccessDialog() {
+      this.dialogService.openMessageDialog({
+        message: 'Success Message',
+        type: 'success',
         leftButton: {
           type: 'close',
           label: 'Close',
