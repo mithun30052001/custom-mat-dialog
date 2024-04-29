@@ -40,7 +40,9 @@ export class MatDialogComponent {
       }
       const iconName = data.type?.toString();
       this.icon = iconName? (ICONS[iconName] || this.icon) : '';
-      this.route = data.rightButton?.navigateTo || '';
+      if (data.rightButton?.type === 'navigate') {
+        this.route = data.rightButton.navigateTo || '';
+      }
     }
   }
 
