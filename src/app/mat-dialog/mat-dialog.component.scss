@@ -36,7 +36,7 @@
       border-radius: 64px !important;
       border: 1px solid black !important;
       color: rgb(68,79,89);
-      background-color: white;
+      background-color: rgb(255,255,255);
       box-shadow: none !important;
       height: 40px;
     }
@@ -55,6 +55,10 @@
       color: white;
       box-shadow: none !important;
       height: 40px;
+    }
+
+    .right-button:hover{
+      background-color: #2b3874!important
     }
   }
 }
