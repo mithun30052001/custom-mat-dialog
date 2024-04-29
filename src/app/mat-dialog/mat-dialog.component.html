@@ -9,7 +9,10 @@
         </p>
     </mat-dialog-content>
     <mat-dialog-actions class="mat-actions-container">
-        <button mat-raised-button class="left-button" [mat-dialog-close]>{{ leftButtonText }}</button>
+        <button mat-raised-button class="left-button"  
+                [ngClass]="{'left-button-alone': !rightButtonText || rightButtonText.length === 0}" 
+                [mat-dialog-close]> {{ leftButtonText }}
+        </button>
         <button *ngIf="rightButtonText && rightButtonText.length > 0" class="right-button" mat-raised-button  (click)="onAction()">{{ rightButtonText }}</button>
     </mat-dialog-actions>
 </div>
