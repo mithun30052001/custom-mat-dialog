@@ -1,33 +1,71 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { CustomDialogComponent } from './custom-dialog/custom-dialog.component';
+import { MessageDialogService } from './message-dialog.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  templateUrl: 'app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  constructor(private dialogService: MessageDialogService ) {}
 
-  constructor(private dialog: MatDialog) {}
+    openDialog(){
+      this.dialogService.openMessageDialog({
+        message: 'Customer couldnt be deleted',
+        type: 'error',
+        rightButton: {
+          type: 'confirm',
+          label: 'delete',
+          style: 'primary'
+        },
+        leftButton: {
+          type: 'close',
+          label: 'close',
+          style: 'basic'
+        }
+      })
+    }
 
-  openCustomDialog(): void {
-    const dialogRef = this.dialog.open(CustomDialogComponent, {
-      width: '250px',
-      data: {
-        title: 'Dialog Title',
-        message: 'Dialog Message',
-        actions: [
-          { label: 'Close', type: 'close', color: 'primary' },
-          { label: 'Navigate', type: 'navigate', color: 'blue', icon: 'arrow_forward' },
-          { label: 'Confirm', type: 'confirmation', color: 'blue', icon: 'refresh' },
-          { label: 'Custom Action', type: 'custom', color: 'warn', icon: 'extension' }
-        ]
-      }
-    });
+    openNavDialog(){
+      this.dialogService.openMessageDialog({
+        message: 'do you really want to redirect?',
+        type: 'warning',
+          rightButton: {
+            type: 'navigate',
+            label: 'dummy',
+            navigateTo: 'dummy',
+            style:'primary'
+          },
+          leftButton: {
+            type: 'close',
+            label: 'close',
+            style:'basic'
+          }
+        })
+    }
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialog result:', result);
-    });
-  }
+    openInfoDialog() {
+      this.dialogService.openMessageDialog({
+        message: 'Information Message',
+        type: 'info',
+        leftButton: {
+          type: 'close',
+          label: 'Close',
+          style: 'primary'
+        },
+      });
+    }
+
+    openSuccessDialog() {
+      this.dialogService.openMessageDialog({
+        message: 'Success Message',
+        type: 'success',
+        leftButton: {
+          type: 'close',
+          label: 'Close',
+          style: 'primary'
+        },
+      });
+    }
+
 }

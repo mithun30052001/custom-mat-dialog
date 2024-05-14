@@ -1,3 +1,17 @@
-<button mat-button (click)="openCustomDialog()">Open Custom Dialog</button>
-
-<app-custom-dialog #dialog></app-custom-dialog>
+<div class="basic-container">
+  <p>
+    <button mat-button (click)="openDialog()">Open Confirm Dialog</button>
+  </p>
+  <p>
+    <button mat-button (click)="openInfoDialog()">Open Alert Dialog</button>
+  </p>
+   <p>
+    <button mat-button (click)="openNavDialog()">Open Navigation to dummy</button>
+  </p>
+   <p>
+    <button mat-button (click)="openSuccessDialog()">Open Sucess</button>
+  </p>
+  <div class="routing">
+    <router-outlet></router-outlet>
+  </div>
+</div>
